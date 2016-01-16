@@ -5,26 +5,17 @@ import javax.swing.border.*;
 import java.util.*;
 
 
-public class GuiDelete extends JFrame
-{
-    
+public class GuiDelete extends JFrame{
+
+    private JLabel lblDeleteItem;
+    private JTextField txtDeleteItem;
   
-    
-   private JLabel lblDeleteItem;
-   
-   private JTextField txtDeleteItem;
-  
-    
-    
-    
     private JButton btnOk;
     private JButton btnClear;
     private JButton btnBack;
     
     //constructor
-   public GuiDelete()
-   {
-       
+   public GuiDelete(){
        Image image = new javax.swing.ImageIcon("C:/Users/Joseph_17/Documents/Java/bank-folded-icons.png").getImage();
        setIconImage(image);
        
@@ -42,21 +33,13 @@ public class GuiDelete extends JFrame
        C.setLayout(new GridLayout(0,3));
        add(C, BorderLayout.SOUTH);
        C.setPreferredSize(new Dimension(C.getWidth(), 50));
-       
-       
-       
+
        lblDeleteItem = new JLabel("Name of the item to be deleted: ", JLabel.CENTER);
        aFlowPanel.add(lblDeleteItem);
        txtDeleteItem = new JTextField(20);
        txtDeleteItem.setHorizontalAlignment(JTextField.CENTER);
        aFlowPanel.add(txtDeleteItem);
-       
-      
-       
-       
-       
-       
-       
+
        btnOk = new JButton("Ok");
        C.add(btnOk);
        btnOk.addActionListener(new btnOkAction());
@@ -69,17 +52,10 @@ public class GuiDelete extends JFrame
        C.add(btnBack);
        btnBack.addActionListener(new btnBackAction()); 
        
-       
-       
-       
        setTitle("Delete an Item");
-      
        setSize(500,250);
        setVisible(true);
        setLocationRelativeTo(null);
-       
-       
-       
        }
     
     
@@ -102,9 +78,7 @@ public class GuiDelete extends JFrame
                   
                 }
                 }
-             
-         
-         
+
               new Choice();
               setVisible(false);
       }catch(NumberFormatException x){
@@ -118,27 +92,19 @@ public class GuiDelete extends JFrame
     
     
     
-     private class btnClearAction implements ActionListener
-    {
-        public void actionPerformed(ActionEvent ae)
-        {
+     private class btnClearAction implements ActionListener{
+        public void actionPerformed(ActionEvent ae){
             txtDeleteItem.setText("");
-          
-            
         }
     }
     
-     private class btnBackAction implements ActionListener
-    {
-        public void actionPerformed(ActionEvent ae)
-        {
+     private class btnBackAction implements ActionListener{
+        public void actionPerformed(ActionEvent ae){
             
             new Choice();
             setVisible(false);
         }
     }
-    
-    
-    
+ 
 }
 
