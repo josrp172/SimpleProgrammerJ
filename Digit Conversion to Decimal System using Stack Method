@@ -1,0 +1,61 @@
+import java.util.Stack;
+import java.util.Scanner;
+public class Binary
+{
+    public static void main(String[]args){
+         Scanner sc = new Scanner(System.in);
+
+
+         System.out.print("Enter a number: ");
+        int number = sc.nextInt();
+        
+         Stack<Integer> binary = new Stack<Integer>();
+         Stack<String> hexadecimal = new Stack<String>();
+         Stack<Integer> Octal = new Stack<Integer>();
+        int resultHexa = 0;
+        int resultBinary = 0;
+        int resultOctal = 0;
+        int numberHexa = number;
+        int numberOctal= number;
+        
+        while(number>0 ){
+          resultBinary = number%2;
+          binary.push(resultBinary);
+          number = number/2;
+        }
+        
+        while(numberOctal>0){
+          resultOctal = numberOctal%8;
+          Octal.push(resultOctal);
+          numberOctal = numberOctal/8; 
+        }
+       
+        
+       char hex[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+       while(numberHexa>0){
+          resultHexa = numberHexa%16;
+          hexadecimal.push(String.valueOf(hex[resultHexa]));
+          numberHexa = numberHexa/16; 
+        } 
+   
+         System.out.print("Binary: ");  
+        for(int i = binary.size()-1; i >0; i--){
+           System.out.print(binary.pop());   
+        }
+        System.out.print("\n");
+        
+        System.out.print("Octal: "); 
+        for(int i = Octal.size()-1; i >=0; i--){
+           System.out.print(Octal.pop());   
+        }
+        System.out.print("\n");
+        
+        System.out.print("Hexadecimal: "); 
+        for(int i = hexadecimal.size()-1; i >=0; i--){
+           System.out.print(hexadecimal.pop());   
+      }
+    }
+  }
+        
+    
+
