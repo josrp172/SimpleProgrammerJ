@@ -1,0 +1,139 @@
+import java.util.*;
+
+
+public class StudentDatabase{
+    public static int officialCount = 0;
+    public static ArrayList item = new ArrayList();
+    public static int[] piece = new int[100];
+    public StudentDatabase( ){ 
+        try{
+        Scanner sc = new Scanner(System.in);
+        
+        int limit = 0;
+        int choice = 0;
+      
+        //int initialSize = 100;
+        int a = 0;
+        
+       /* ArrayList item = new ArrayList();
+        int[] piece = new int[initialSize]; */
+  
+        do{
+            System.out.println("------------------------------------------------------------");
+        System.out.println("[1]Add Item\n[2]Remove an Item\n[3]Update an Item\n[4]Search a specific Item\n[5]Display the Items\nChoice: "); 
+        choice = sc.nextInt();
+            System.out.println("------------------------------------------------------------");
+        switch(choice){
+            
+            case 1: 
+             System.out.println("ADD AN ITEM");
+             System.out.println("Enter how many items to be entered: ");
+             limit = sc.nextInt();
+             System.out.println("Enter "+limit+ " students: ");
+            for(int index = (0+officialCount); index < (limit+officialCount); index++){
+            
+              System.out.println("student "+(index+1)+":" );
+              item.add(sc.next());
+              System.out.println("Enter the piece/s for "+item.get(index));
+              piece[index] = sc.nextInt();
+              
+            if(piece[index] < 5 || piece[index] >10){
+                item.remove(index);
+                  System.out.println("the number of pieces must be less than 10 and less than 5"); 
+                 index-=1;
+            } 
+             }
+             
+             officialCount+=limit;
+             new GuiForm();
+                
+            System.out.println("Record added");
+             break; 
+           
+            
+           case 2: System.out.println("Remove an item");
+           System.out.println("Enter the item to be deleted: ");
+           String deleteItem = sc.next();
+           for(int index = 0; index < item.size(); index++){
+           if(deleteItem.equals(item.get(index))){
+               //for deleting a specific item int the ArrayList item
+               item.remove(deleteItem); 
+               
+               //for deleting the array piece
+               for(int x = index +1; x <= item.size(); x++){
+                   piece[x-1] = piece[x];
+                }
+               piece[officialCount - 1] = piece[officialCount];
+               officialCount-=1;
+            }
+        }
+        break;
+        
+        case 3:System.out.println("Update an Item:");
+        System.out.println("Item to be updated: ");
+        String updateItem = sc.next();
+        for(int index = 0; index < item.size(); index++){
+        if(updateItem.equals(item.get(index))){
+            System.out.println("Change the name of an Item into: ");
+           String  updateTo = sc.next();
+           item.set(index, updateTo);
+           System.out.println("The amount of pieces in "+item.get(index)+" item ");
+           int updatePieces = sc.nextInt();
+           if(piece[index] > 5 || piece[index] <10){
+           piece[index] = updatePieces;
+        }
+        else{
+           System.out.println("the number of pieces must be less than 10 and less than 5");
+        }
+            
+        }
+    }
+    break;
+    
+    
+       case 4:System.out.println("SEARCH AN ITEM");
+       System.out.println("Name of an item to be search: ");
+       String searchItem = sc.next();
+       for(int index = 0; index < officialCount; index++){
+           if(searchItem.equals(item.get(index))){
+               System.out.println("Item is at index: "+index);
+               System.out.println("The number of pieces is: "+piece[index]);
+               index = officialCount;
+            }
+            else if(index == (officialCount-1) && !(searchItem.equals(item.get(index)))){
+                System.out.println("Item not existing");
+            }
+           
+           
+        }
+        break;
+       
+        
+     case 5: System.out.println("\t\t***Database Content***");
+        System.out.println("------------------------------------------------------");
+        
+        System.out.println("Record#     |    Name              |  Pieces");
+        System.out.println("------------------------------------------------------");
+        
+        for(int index = 0; index <officialCount; index++){
+        System.out.println("  "+index+"\t  "+"  |     "+""+item.get(index)+"\t\t "+piece[index]);
+        System.out.println("------------------------------------------------------");
+    }
+    break;
+      
+    }
+    }while(choice!=10);
+
+
+}
+
+catch(InputMismatchException x){
+    System.out.println("Wrong Input");
+    new StudentDatabase();
+}
+catch(ArrayIndexOutOfBoundsException x){
+    System.out.println("Index not found");
+    new StudentDatabase();
+}
+    }
+}
